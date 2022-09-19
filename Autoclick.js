@@ -2,7 +2,7 @@
 // @name         AutoClicker
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  One AutoClicker to rule them all.
+// @description  One AutoClicker to rule them all. Place the class 'autoclick' on a clickable html element and run the script by pressing the button.
 // @author       Michael Whitaker
 // @match        http://localhost
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=undefined.localhost
@@ -41,15 +41,6 @@
     button.onclick = onclick;
     return button;
   }
-
-  vm.sleep = function(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds) {
-        break;
-      }
-    }
-  }
   
   vm.clickOnElements = function () {
     vm.targetElementsLength = document.getElementsByClassName('autoclick').length;
@@ -58,7 +49,6 @@
     }
 
     for (var i = 0; i < vm.targetElementsLength; i++) {
-
       setTimeout(function () {
         vm.clicknthElement(i);
       }, 200 * i);
